@@ -2,7 +2,7 @@
 
 A Streamlit-powered web application that lets you **chat with your PDFs** using the **LLaMA 2 model** and also **translate PDF content** into multiple languages.  
 
-🚀 Features
+##🚀 Features
 - 📚 **Multi-PDF Chat** – Upload one or more PDFs and interact with them in natural language.  
 - 🔍 **Semantic Search** – Uses **HuggingFace embeddings** + **FAISS** for efficient retrieval.  
 - 🧠 **Conversational Memory** – Keeps context of past queries for smoother interaction.  
