@@ -1,14 +1,12 @@
 import streamlit as st
 from streamlit_chat import message
 from langchain.chains import ConversationalRetrievalChain
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.llms import CTransformers
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.llms import CTransformers
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
-from langchain.document_loaders import PyPDFLoader
-from langchain.document_loaders import TextLoader
-from langchain.document_loaders import Docx2txtLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2txtLoader
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 import os
 from dotenv import load_dotenv
@@ -17,21 +15,21 @@ import fitz
 from fpdf import FPDF
 from googletrans import Translator
 import warnings
+import torch
 
 warnings.filterwarnings("ignore", category=FutureWarning)
-
 load_dotenv()
 
+# ---------------- Session State ----------------
 def initialize_session_state():
     if 'history' not in st.session_state:
         st.session_state['history'] = []
-
     if 'generated' not in st.session_state:
         st.session_state['generated'] = ["Hello! Ask me anything about 🤗"]
-
     if 'past' not in st.session_state:
         st.session_state['past'] = ["Hey! 👋"]
 
+# ---------------- Chat Function ----------------
 def conversation_chat(query, chain, history):
     result = chain({"question": query, "chat_history": history})
     history.append((query, result["answer"]))
@@ -59,16 +57,22 @@ def display_chat_history(chain):
                 message(st.session_state["past"][i], is_user=True, key=str(i) + '_user', avatar_style="fun-emoji")
                 message(st.session_state['generated'][i], key=str(i), avatar_style="bottts")
 
+# ---------------- LLM Chain ----------------
 def create_conversational_chain(vector_store):
-    load_dotenv()
-    
+    # detect device
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
     llm = CTransformers(
         model=r"llama-2-7b-chat.ggmlv3.q4_0.bin",  
         model_type="llama",  
-        device="cpu", 
+        device=device,
         streaming=True, 
         callbacks=[StreamingStdOutCallbackHandler()],
-        config={'max_new_tokens': 100, 'temperature': 0.01}  
+        config={
+            'max_new_tokens': 512,
+            'temperature': 0.3,
+            'context_length': 2048
+        }  
     )
 
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
@@ -76,11 +80,12 @@ def create_conversational_chain(vector_store):
     chain = ConversationalRetrievalChain.from_llm(
         llm=llm, 
         chain_type='stuff',
-        retriever=vector_store.as_retriever(search_kwargs={"k": 2}),
+        retriever=vector_store.as_retriever(search_kwargs={"k": 3}),
         memory=memory
     )
     return chain
 
+# ---------------- PDF Extraction ----------------
 def extract_text_from_pdf(pdf_path):
     document = ""
     with fitz.open(pdf_path) as pdf:
@@ -92,15 +97,16 @@ def create_text_file(content, output_path):
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(content)
 
+# ---------------- Main App ----------------
 def main():
-    load_dotenv()
-    
     initialize_session_state()
     st.set_page_config(layout="wide", page_title="Multi-Docs ChatBot and PDF Translator :books: 🤖")
     
     st.sidebar.title("Document Processing")
     option = st.sidebar.selectbox("Choose an option", ("ChatBot", "PDF Translator"))
     uploaded_files = st.sidebar.file_uploader("Upload files", accept_multiple_files=True)
+
+    document_text = ""  
 
     if uploaded_files:
         text = []
@@ -114,21 +120,27 @@ def main():
             if file_extension == ".pdf":
                 loader = PyPDFLoader(temp_file_path)
                 document_text = extract_text_from_pdf(temp_file_path) 
-            elif file_extension == ".docx" or file_extension == ".doc":
+            elif file_extension in [".docx", ".doc"]:
                 loader = Docx2txtLoader(temp_file_path)
             elif file_extension == ".txt":
                 loader = TextLoader(temp_file_path)
 
             if loader:
                 text.extend(loader.load())
-                os.remove(temp_file_path)
+
+            os.remove(temp_file_path)
 
         if option == "ChatBot":
-            text_splitter = CharacterTextSplitter(separator="\n", chunk_size=1000, chunk_overlap=100, length_function=len)
+            text_splitter = RecursiveCharacterTextSplitter(
+                chunk_size=500,  # for embeddings
+                chunk_overlap=50
+            )
             text_chunks = text_splitter.split_documents(text)
 
-            embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", 
-                                               model_kwargs={'device': 'cpu'})
+            embeddings = HuggingFaceEmbeddings(
+                model_name="sentence-transformers/all-MiniLM-L6-v2", 
+                model_kwargs={'device': 'cpu'}
+            )
 
             vector_store = FAISS.from_documents(text_chunks, embedding=embeddings)
 
@@ -139,11 +151,9 @@ def main():
         elif option == "PDF Translator":
             st.header("Translate Document")
             languages = {
-                "English": "en", "Hindi": "hi",  "Marathi": "mr", "Bengali": "bn", "Telugu": "te",
+                "English": "en", "Hindi": "hi", "Marathi": "mr", "Bengali": "bn", "Telugu": "te",
                 "Tamil": "ta", "Urdu": "ur", "Gujarati": "gu", "Malayalam": "ml", "Kannada": "kn", 
-                "Odia": "or", "Punjabi": "pa",  
-                
-                  "Nepali": "ne", 
+                "Odia": "or", "Punjabi": "pa", "Nepali": "ne"
             }
 
             target_language = st.selectbox("Select target language", list(languages.keys()))
@@ -161,5 +171,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
