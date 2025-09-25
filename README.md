@@ -41,11 +41,10 @@ A **Streamlit-powered web application** that lets you **chat with your PDFs** us
 
 📦 pdf-chat-webapp
 ┣ 📂 models
-┃ ┗ llama-2-7b-chat.ggmlv3.q4_0.bin   # model file
+┃ ┗ llama-2-7b-chat.ggmlv3.q4_0.bin    # model file
 ┣ 📜 app.py                            # main Streamlit app
 ┣ 📜 requirements.txt                  # dependencies
 ┣ 📜 .gitignore
-┣ 📜 .env                              # env variables (not committed)
 ┗ 📜 README.md
 
 ````
