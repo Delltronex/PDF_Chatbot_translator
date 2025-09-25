@@ -40,8 +40,8 @@ A **Streamlit-powered web application** that lets you **chat with your PDFs** us
 
 
 📦 pdf-chat-webapp
-┣ 📂 models
-┃ ┗ llama-2-7b-chat.ggmlv3.q4_0.bin    # model file
+
+┃ llama-2-7b-chat.ggmlv3.q4_0.bin      # model file
 ┣ 📜 app.py                            # main Streamlit app
 ┣ 📜 requirements.txt                  # dependencies
 ┣ 📜 .gitignore
@@ -55,21 +55,9 @@ A **Streamlit-powered web application** that lets you **chat with your PDFs** us
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/pdf-chat-webapp.git
+
 cd pdf-chat-webapp
 ````
-
-### 2️⃣ Create a Virtual Environment
-
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# Mac / Linux
-python3 -m venv venv
-source venv/bin/activate
-```
 
 ### 3️⃣ Install Dependencies
 
@@ -81,7 +69,7 @@ pip install -r requirements.txt
 ### 4️⃣ Add Model
 
 Download **LLaMA 2 (GGML file)** →
-`llama-2-7b-chat.ggmlv3.q4_0.bin`
+`llama-2-7b-chat.ggmlv3.q4_0.bin`  You can download model from huggingface
 
 Place it inside:
 
@@ -93,14 +81,6 @@ Update `app.py` model path if needed:
 
 ```python
 model="models/llama-2-7b-chat.ggmlv3.q4_0.bin"
-```
-
-### 5️⃣ Configure Environment (Optional)
-
-If you use APIs (like OpenAI), create `.env`:
-
-```ini
-OPENAI_API_KEY=your_api_key_here
 ```
 
 ### 6️⃣ Run the App
@@ -134,6 +114,7 @@ http://localhost:8501
 * Odia (`or`)
 * Punjabi (`pa`)
 * Nepali (`ne`)
+* You can add many languages
 
 ---
 
