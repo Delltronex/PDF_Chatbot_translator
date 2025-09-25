@@ -60,7 +60,7 @@ def display_chat_history(chain):
 # ---------------- LLM Chain ----------------
 def create_conversational_chain(vector_store):
     # detect device
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda" 
 
     llm = CTransformers(
         model=r"llama-2-7b-chat.ggmlv3.q4_0.bin",  
@@ -132,7 +132,7 @@ def main():
 
         if option == "ChatBot":
             text_splitter = RecursiveCharacterTextSplitter(
-                chunk_size=500,  # for embeddings
+                chunk_size=500,  # SAFE for embeddings
                 chunk_overlap=50
             )
             text_chunks = text_splitter.split_documents(text)
@@ -170,4 +170,4 @@ def main():
                     st.download_button("Download Translated Text", f, file_name=output_text_path, mime="text/plain")
 
 if __name__ == "__main__":
-    main()
+    main()  
