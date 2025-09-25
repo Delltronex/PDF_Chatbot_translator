@@ -47,7 +47,7 @@ A **Streamlit-powered web application** that lets you **chat with your PDFs** us
 ┣ 📜 .gitignore
 ┗ 📜 README.md
 
-````
+```
 
 ---
 
@@ -137,43 +137,4 @@ http://localhost:8501
 
 ---
 
-## 🐳 Docker Setup (Optional)
 
-### Create Docker Image
-
-```bash
-docker build -t pdf-chat-webapp .
-```
-
-### Run Container
-
-```bash
-docker run -p 8501:8501 pdf-chat-webapp
-```
-
-Now visit 👉 `http://localhost:8501`
-
----
-
-## 📜 License
-
-MIT License © 2025
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome. Fork → Feature Branch → PR 🚀
-
-```
-
----
-
-✅ This merged README has:  
-- Your **features & screenshots**  
-- My **installation guide**  
-- **Project structure + Docker support**  
-- Clean & professional formatting  
-
-Do you also want me to create the **`Dockerfile` and requirements.txt`** content so you can push them to GitHub directly?
-```
