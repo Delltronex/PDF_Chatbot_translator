@@ -1,11 +1,3 @@
-Perfect 🚀
-Let’s **update + merge** everything you’ve written with the advanced setup I gave earlier, so your GitHub `README.md` looks clean, professional, and production-ready.
-
-Here’s the **final merged README**:
-
----
-
-```markdown
 # 📄 PDF Chat Web App with LLaMA 2 & Language Translation
 
 A **Streamlit-powered web application** that lets you **chat with your PDFs** using the **LLaMA 2 model** and also **translate PDF content** into multiple languages.  
@@ -18,13 +10,13 @@ A **Streamlit-powered web application** that lets you **chat with your PDFs** us
 - 🧠 **Conversational Memory** – Keeps context of past queries for smoother interaction.  
 - 🌍 **Language Translation** – Translate extracted PDF text or answers into multiple languages.  
 - 📑 **OCR Support** – Works with scanned PDFs.  
-- ⚡ **Lightweight & Local** – Runs locally via Streamlit, works with port forwarding.  
+- ⚡ **Lightweight & Local** – Runs entirely on your system via Streamlit.  
 
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend**: Streamlit  
-- **LLM**: [LLaMA 2](https://ai.meta.com/llama/) (via CTransformers)  
+- **Frontend**: [Streamlit](https://streamlit.io/)  
+- **LLM**: [LLaMA 2](https://ai.meta.com/llama/) (via [CTransformers](https://github.com/marella/ctransformers))  
 - **Embeddings**: HuggingFace (Sentence Transformers)  
 - **Vector Store**: FAISS  
 - **Translation**: Google Translate API  
@@ -33,19 +25,19 @@ A **Streamlit-powered web application** that lets you **chat with your PDFs** us
 ---
 
 ## 📸 Output Preview
-1. **Dashboard**  
+### 1. Dashboard  
 <img width="1918" height="958" alt="Chat3" src="https://github.com/user-attachments/assets/957db58f-f8eb-44b1-8bc5-954d7384700e" />
 
-2. **Conversation**  
+### 2. Conversation  
 <img width="1916" height="970" alt="Chat4" src="https://github.com/user-attachments/assets/0bbc2dcb-88da-4240-af15-51bb7eb127dd" />
 
-3. **PDF Data Translation**  
+### 3. PDF Data Translation  
 <img width="1918" height="967" alt="Chat5" src="https://github.com/user-attachments/assets/cc81890c-1ea7-429b-aee5-b106f92889fd" />
 
 ---
 
 ## 📂 Project Structure
-```
+
 
 📦 pdf-chat-webapp
 ┣ 📂 models
