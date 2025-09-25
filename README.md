@@ -23,5 +23,5 @@ A **Streamlit-powered web application** that lets you **chat with your PDFs** us
 
 ---
 
-## 📂 Project Structure
+
 
