@@ -1,4 +1,6 @@
 
+
+
 ---
 
 # 📄 PDF Chat Web App with LLaMA 2, LangChain & Language Translation
@@ -9,26 +11,26 @@ A **Streamlit-powered web application** that allows you to **chat with PDFs** us
 
 ## 🚀 Features
 
-* 📚 **Multi-PDF Chat** – Upload one or more PDFs and interact with them in natural language.
-* 🔍 **Semantic Search** – Uses **HuggingFace embeddings** + **FAISS** (via **LangChain**) for efficient retrieval.
-* 🧠 **Conversational Memory** – LangChain memory maintains context across queries for smoother interaction.
-* 🤖 **LLM-Powered Responses** – Uses **LLaMA 2** integrated with **LangChain ConversationalRetrievalChain**.
-* 🌍 **Language Translation** – Translate extracted PDF text or chatbot responses into multiple languages.
-* 📑 **OCR Support** – Works with scanned PDFs.
-* ⚡ **Lightweight & Local** – Runs entirely on your system via Streamlit.
+- 📚 **Multi-PDF Chat** – Upload one or more PDFs and interact with them in natural language.
+- 🔍 **Semantic Search** – Uses **HuggingFace embeddings** + **FAISS** (via **LangChain**) for efficient retrieval.
+- 🧠 **Conversational Memory** – LangChain memory maintains context across queries for smoother interaction.
+- 🤖 **LLM-Powered Responses** – Uses **LLaMA 2** integrated with **LangChain ConversationalRetrievalChain**.
+- 🌍 **Language Translation** – Translate extracted PDF text or chatbot responses into multiple languages.
+- 📑 **OCR Support** – Works with scanned PDFs.
+- ⚡ **Lightweight & Local** – Runs entirely on your system via Streamlit.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend**: [Streamlit](https://streamlit.io/)  
-* **LLM**: [LLaMA 2](https://ai.meta.com/llama/) (via [CTransformers](https://github.com/marella/ctransformers))  
-* **Framework**: [LangChain](https://www.langchain.com/)  
-* **Embeddings**: HuggingFace (Sentence Transformers)  
-* **Vector Store**: FAISS (integrated via LangChain)  
-* **Memory**: LangChain ConversationBufferMemory  
-* **Translation**: Google Translate API  
-* **PDF Parsing**: PyMuPDF (fitz), Docx2txt  
+- **Frontend**: [Streamlit](https://streamlit.io/)
+- **LLM**: [LLaMA 2](https://ai.meta.com/llama/) (via [CTransformers](https://github.com/marella/ctransformers))
+- **Framework**: [LangChain](https://www.langchain.com/)
+- **Embeddings**: HuggingFace (Sentence Transformers)
+- **Vector Store**: FAISS (integrated via LangChain)
+- **Memory**: LangChain ConversationBufferMemory
+- **Translation**: Google Translate API
+- **PDF Parsing**: PyMuPDF (fitz), Docx2txt
 
 ---
 
@@ -36,15 +38,15 @@ A **Streamlit-powered web application** that allows you to **chat with PDFs** us
 
 ### Dashboard
 
-![Dashboard](https://github.com/user-attachments/assets/957db58f-f8eb-44b1-8bc5-954d7384700e)
+Dashboard preview here
 
 ### Conversation
 
-![Conversation](https://github.com/user-attachments/assets/0bbc2dcb-88da-4240-af15-51bb7eb127dd)
+Conversation preview here
 
 ### PDF Data Translation
 
-![Translation](https://github.com/user-attachments/assets/cc81890c-1ea7-429b-aee5-b106f92889fd)
+Translation preview here
 
 ---
 
@@ -142,7 +144,7 @@ Nepali (ne)
 
 ---
 
-## 🔮 Future Improvements
+🔮 Future Improvements
 
 🎤 Speech-to-Text & Text-to-Speech support
 
@@ -153,6 +155,8 @@ Nepali (ne)
 📊 Advanced Analytics for PDF insights
 
 
+
+---
 
 ---
 
