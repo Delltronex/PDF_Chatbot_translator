@@ -1,18 +1,18 @@
 
-
 ---
 
-# 📄 PDF Chat Web App with LLaMA 2 & Language Translation
+# 📄 PDF Chat Web App with LLaMA 2, LangChain & Language Translation
 
-A **Streamlit-powered web application** that allows you to **chat with PDFs** using the **LLaMA 2 model** and **translate PDF content** into multiple languages.
+A **Streamlit-powered web application** that allows you to **chat with PDFs** using the **LLaMA 2 model** + **LangChain**, and **translate PDF content** into multiple languages.
 
 ---
 
 ## 🚀 Features
 
 * 📚 **Multi-PDF Chat** – Upload one or more PDFs and interact with them in natural language.
-* 🔍 **Semantic Search** – Uses **HuggingFace embeddings** + **FAISS** for efficient retrieval.
-* 🧠 **Conversational Memory** – Maintains context across queries for smoother interaction.
+* 🔍 **Semantic Search** – Uses **HuggingFace embeddings** + **FAISS** (via **LangChain**) for efficient retrieval.
+* 🧠 **Conversational Memory** – LangChain memory maintains context across queries for smoother interaction.
+* 🤖 **LLM-Powered Responses** – Uses **LLaMA 2** integrated with **LangChain ConversationalRetrievalChain**.
 * 🌍 **Language Translation** – Translate extracted PDF text or chatbot responses into multiple languages.
 * 📑 **OCR Support** – Works with scanned PDFs.
 * ⚡ **Lightweight & Local** – Runs entirely on your system via Streamlit.
@@ -21,12 +21,14 @@ A **Streamlit-powered web application** that allows you to **chat with PDFs** us
 
 ## 🛠️ Tech Stack
 
-* **Frontend**: [Streamlit](https://streamlit.io/)
-* **LLM**: [LLaMA 2](https://ai.meta.com/llama/) (via [CTransformers](https://github.com/marella/ctransformers))
-* **Embeddings**: HuggingFace (Sentence Transformers)
-* **Vector Store**: FAISS
-* **Translation**: Google Translate API
-* **PDF Parsing**: PyMuPDF (fitz), Docx2txt
+* **Frontend**: [Streamlit](https://streamlit.io/)  
+* **LLM**: [LLaMA 2](https://ai.meta.com/llama/) (via [CTransformers](https://github.com/marella/ctransformers))  
+* **Framework**: [LangChain](https://www.langchain.com/)  
+* **Embeddings**: HuggingFace (Sentence Transformers)  
+* **Vector Store**: FAISS (integrated via LangChain)  
+* **Memory**: LangChain ConversationBufferMemory  
+* **Translation**: Google Translate API  
+* **PDF Parsing**: PyMuPDF (fitz), Docx2txt  
 
 ---
 
@@ -48,15 +50,7 @@ A **Streamlit-powered web application** that allows you to **chat with PDFs** us
 
 ## 📂 Project Structure
 
-```
-pdf-chat-webapp/
-├─ app.py                   # Main Streamlit app
-├─ requirements.txt         # Dependencies
-├─ .gitignore
-├─ README.md
-└─ models/
-   └─ llama-2-7b-chat.ggmlv3.q4_0.bin   # Model file
-```
+pdf-chat-webapp/ ├─ app.py                   # Main Streamlit app ├─ requirements.txt         # Dependencies ├─ .gitignore ├─ README.md └─ models/ └─ llama-2-7b-chat.ggmlv3.q4_0.bin   # Model file
 
 ---
 
@@ -67,72 +61,101 @@ pdf-chat-webapp/
 ```bash
 git clone https://github.com/Delltronex/PDF_Chatbot_translator.git
 cd pdf-chat-webapp
-```
 
-### 2️⃣ Install Dependencies
+2️⃣ Install Dependencies
 
-```bash
 pip install --upgrade pip
 pip install -r requirements.txt
-```
 
-### 3️⃣ Download and Add Model
+Your requirements.txt should include:
 
-Download the LLaMA 2 GGML file → `llama-2-7b-chat.ggmlv3.q4_0.bin` (available on HuggingFace)
-Place it inside the `models/` folder:
+streamlit
+streamlit-chat
+langchain
+langchain-community
+faiss-cpu
+sentence-transformers
+ctransformers
+python-docx
+docx2txt
+pymupdf
+fpdf
+googletrans==4.0.0-rc1
+python-dotenv
+torch
 
-```
+3️⃣ Download and Add Model
+
+Download the LLaMA 2 GGML file → llama-2-7b-chat.ggmlv3.q4_0.bin (available on HuggingFace).
+Place it inside the models/ folder:
+
 pdf-chat-webapp/models/
-```
 
-Update the model path in `app.py` if needed:
+Update the model path in app.py if needed:
 
-```python
 model = "models/llama-2-7b-chat.ggmlv3.q4_0.bin"
-```
 
-### 4️⃣ Run the App
+4️⃣ Run the App
 
-```bash
 streamlit run app.py
-```
 
-### 5️⃣ Open in Browser
+5️⃣ Open in Browser
 
-Go to:
-
-```
 http://localhost:8501
-```
+
 
 ---
 
-## 🌍 Supported Languages for Translation
+🌍 Supported Languages for Translation
 
-* English (en)
-* Hindi (hi)
-* Marathi (mr)
-* Bengali (bn)
-* Telugu (te)
-* Tamil (ta)
-* Urdu (ur)
-* Gujarati (gu)
-* Malayalam (ml)
-* Kannada (kn)
-* Odia (or)
-* Punjabi (pa)
-* Nepali (ne)
+English (en)
+
+Hindi (hi)
+
+Marathi (mr)
+
+Bengali (bn)
+
+Telugu (te)
+
+Tamil (ta)
+
+Urdu (ur)
+
+Gujarati (gu)
+
+Malayalam (ml)
+
+Kannada (kn)
+
+Odia (or)
+
+Punjabi (pa)
+
+Nepali (ne)
+
 
 > ➕ More languages can be added easily.
 
----
 
-## 🔮 Future Improvements
 
-* 🎤 **Speech-to-Text & Text-to-Speech support**
-* ☁️ **Cloud Deployment** (Streamlit Cloud / Hugging Face Spaces / AWS)
-* ⚡ **GPU Acceleration** for faster inference
-* 📊 **Advanced Analytics** for PDF insights
 
 ---
+
+🔮 Future Improvements
+
+🎤 Speech-to-Text & Text-to-Speech support
+
+☁️ Cloud Deployment (Streamlit Cloud / Hugging Face Spaces / AWS)
+
+⚡ GPU Acceleration for faster inference
+
+📊 Advanced Analytics for PDF insights
+
+
+
+---
+
+
+
 
