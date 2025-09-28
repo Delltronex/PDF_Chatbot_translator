@@ -142,7 +142,7 @@ Nepali (ne)
 
 ---
 
-🔮 Future Improvements
+## 🔮 Future Improvements
 
 🎤 Speech-to-Text & Text-to-Speech support
 
