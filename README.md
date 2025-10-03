@@ -1,9 +1,4 @@
-Perfect 👍 thanks for pasting your **README draft**.
-Right now, it looks clean, but it’s **missing mentions of LangChain**, even though your `app.py` uses it heavily (`ConversationalRetrievalChain`, memory, loaders, embeddings).
 
-I’ll refine it, **add LangChain details where needed**, fix formatting, and make the README **more professional and ready for GitHub**.
-
-Here’s the **updated README.md** for your project:
 
 ---
 
@@ -137,7 +132,3 @@ Go to: [http://localhost:8501](http://localhost:8501)
 * 🧩 Integration with **LangChain Agents & Tools** for extended capabilities
 
 ---
-
-✅ Now your README fully highlights **LangChain’s role** in your project (retrievers, memory, loaders), while keeping it GitHub-ready.
-
-Do you want me to also create a **`requirements.txt`** file for this project (with exact versions of Streamlit, LangChain, FAISS, etc.)?
