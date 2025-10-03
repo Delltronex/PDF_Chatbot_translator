@@ -64,12 +64,12 @@ PDF Data Translation
 
 📂 Project Structure
 
-pdf-chat-webapp/  
-├─ app.py                   # Main Streamlit app  
-├─ requirements.txt         # Dependencies  
-├─ .gitignore  
-├─ README.md  
-└─ models/  
+pdf-chat-webapp/
+├─ app.py                   # Main Streamlit app
+├─ requirements.txt         # Dependencies
+├─ .gitignore
+├─ README.md
+└─ models/
    └─ llama-2-7b-chat.ggmlv3.q4_0.bin   # Model file
 
 
@@ -79,12 +79,12 @@ pdf-chat-webapp/
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/Delltronex/PDF_Chatbot_translator.git  
+git clone https://github.com/Delltronex/PDF_Chatbot_translator.git
 cd pdf-chat-webapp
 
 2️⃣ Install Dependencies
 
-pip install --upgrade pip  
+pip install --upgrade pip
 pip install -r requirements.txt
 
 3️⃣ Download and Add Model
@@ -158,7 +158,11 @@ Nepali (ne)
 📊 Advanced Analytics for PDF insights
 
 
----  
+
+---
+
+
+
 
 
 
